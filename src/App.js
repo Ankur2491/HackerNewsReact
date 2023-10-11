@@ -63,6 +63,7 @@ function App() {
       paddingBottom: '1rem',
       position:'sticky',
       top:0,
+      backgroundAttachment:'fixed',
       backgroundColor:'black'
     }}>
       <Link style={{ color: cat === 'new'? 'blue': '' }} onClick={()=>setCat('new')}>New</Link>
