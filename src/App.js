@@ -62,6 +62,7 @@ function App() {
       borderBottom: 'solid 1px',
       paddingBottom: '1rem',
       position:'sticky',
+      position: '-webkit-sticky',
       top:0,
       backgroundAttachment:'fixed',
       backgroundColor:'black'
