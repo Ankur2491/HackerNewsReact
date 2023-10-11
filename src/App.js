@@ -27,13 +27,12 @@ function getActualStories(ids) {
   }
   return responseArr;
 }
-function App() {
+function App(props) {
   const [bestIds, setBestIds] = useState([]);
   const [text, setText] = useState([])
   const [counter, setCounter] = useState(1);
   const [open, setOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
-  const [cat, setCat] = useState('new');
   const handleOpen = (e) => {
     setSelectedItem(e);
     setOpen(true)
@@ -41,7 +40,7 @@ function App() {
   const handleClose = () => setOpen(false)
   useEffect(() => {
     async function getBestIds() {
-      let response = await fetch(`https://hacker-news.firebaseio.com/v0/${cat}stories.json`);
+      let response = await fetch(`https://hacker-news.firebaseio.com/v0/${props.category}stories.json`);
       let json = await response.json();
       setBestIds(json);
       let resp = await Promise.all(getActualStories(json));
@@ -54,25 +53,9 @@ function App() {
       setText(arr);
     }
     getBestIds();
-  },[cat]);
+  },[props.category]);
   return (
     <div>
-      <nav
-    style={{
-      borderBottom: 'solid 1px',
-      paddingBottom: '1rem',
-      position:'sticky',
-      position: '-webkit-sticky',
-      top:0,
-      backgroundAttachment:'fixed',
-      backgroundColor:'black'
-    }}>
-      <Link style={{ color: cat === 'new'? 'blue': '' }} onClick={()=>setCat('new')}>New</Link>
-      <Link style={{ color: cat === 'top'? 'blue': '' }} onClick={()=>setCat('top')}>Top</Link>
-      <Link style={{ color: cat === 'best'? 'blue': '' }} onClick={()=>setCat('best')}>Best</Link>
-      <Link style={{ color: cat === 'show'? 'blue': '' }} onClick={()=>setCat('show')}>Show</Link>
-      <Link style={{ color: cat === 'ask'? 'blue': '' }} onClick={()=>setCat('ask')}>Ask</Link>
-    </nav>
       <Box sx={{ flexGrow: 1 }}>
         <InfiniteScroll
           dataLength={text.length}
