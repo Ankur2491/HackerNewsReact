@@ -40,6 +40,7 @@ function App(props) {
   const handleClose = () => setOpen(false)
   useEffect(() => {
     async function getBestIds() {
+      setText([])
       let response = await fetch(`https://hacker-news.firebaseio.com/v0/${props.category}stories.json`);
       let json = await response.json();
       setBestIds(json);
