@@ -9,7 +9,7 @@ export default function Navigation() {
         <div>
         <AppBar position="sticky" style={{backgroundColor:'#1F1B24'}}>
             <Toolbar disableGutters>
-          <Link style={{ color: '#F5F5F5', fontSize:'20px', textDecoration:'none' }} onClick={()=>setCat('new')}>HackerNewsReact</Link>
+          <Link style={{ color: '#F5F5F5', fontSize:'20px', textDecoration:'none' }} onClick={()=>setCat('new')}>HackerNews</Link>
           <Divider orientation="vertical" variant="middle" flexItem />
           <Link style={{ color: cat === 'new'? 'grey': 'white', fontSize:'15px', textDecoration:'none', paddingTop:'5px', paddingLeft:'5px' }} onClick={()=>setCat('new')}>New</Link>
           <Link style={{ color: cat === 'top'? 'grey': 'white', fontSize:'15px', textDecoration:'none', paddingTop:'5px', paddingLeft:'5px' }} onClick={()=>setCat('top')}>Top</Link>
