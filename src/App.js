@@ -11,7 +11,7 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Comments from './Comments';
-import { Link, Route, Routes } from 'react-router-dom';
+
 const theme = createTheme({
   typography: {
     button: {
@@ -40,7 +40,7 @@ function App(props) {
   const handleClose = () => setOpen(false)
   useEffect(() => {
     async function getBestIds() {
-      setText([])
+      setText([]);
       let response = await fetch(`https://hacker-news.firebaseio.com/v0/${props.category}stories.json`);
       let json = await response.json();
       setBestIds(json);
@@ -57,7 +57,7 @@ function App(props) {
   },[props.category]);
   return (
     <div>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box style={{backgroundColor:'#121212'}}sx={{ flexGrow: 1 }}>
         <InfiniteScroll
           dataLength={text.length}
           next={fetchMoreData}

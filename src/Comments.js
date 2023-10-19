@@ -27,7 +27,12 @@ function Comments(props) {
    const [comments, setComments] = useState([])
    useEffect(()=>{
     async function fetchComments(){
-    let kids = props.payload.kids;
+    let kids;
+    if(props.payload.kids)
+      kids = props.payload.kids;
+    else{
+      kids = props.payload.children;
+    }
     let resp = await Promise.all(getActualComment(kids));
     let jsons = await Promise.all(resp.map(r => r.json()));
     setComments(jsons);
