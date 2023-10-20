@@ -204,37 +204,40 @@ export default function Search() {
       </Modal>
         </div>
     )
-    async function search() {
+   async function search() {
+        setPageCount(0)
         if (searchQuery && searchQuery.length > 0) {
-            if (searchType === 'relevance') {
-                let res = await fetch(`http://hn.algolia.com/api/v1/search?query=${searchQuery}&tags=story`)
-                let json = await res.json();
-                setData(json["hits"])
-                setPageCount(json["nbPages"])
+            let res = await fetch(`https://hnews-api.vercel.app/search`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    "type": searchType,
+                    "query": searchQuery
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                }
+            })
+            let json = await res.json();
+            setData(json["hits"])
+            setPageCount(json["nbPages"])
 
-            }
-            else{
-                let res = await fetch(`http://hn.algolia.com/api/v1/search_by_date?query=${searchQuery}&tags=story`)
-                let json = await res.json();
-                setData(json["hits"])
-                setPageCount(json["nbPages"])
-            }
         }
     }
-    async function handlePageClick(event,page) {
-        if (searchType === 'relevance') {
-            let res = await fetch(`http://hn.algolia.com/api/v1/search?query=${searchQuery}&tags=story&page=${page}`)
-            let json = await res.json();
-            setData(json["hits"])
-            setPageCount(json["nbPages"])
-
-        }
-        else{
-            let res = await fetch(`http://hn.algolia.com/api/v1/search_by_date?query=${searchQuery}&tags=story&page=${page}`)
-            let json = await res.json();
-            setData(json["hits"])
-            setPageCount(json["nbPages"])
-        }
-        window.scrollTo(0,0);
+    async function handlePageClick(event, page) {
+        let res = await fetch(`https://hnews-api.vercel.app/searchByPage`, {
+            method: 'POST',
+            body: JSON.stringify({
+                "type": searchType,
+                "query": searchQuery,
+                "page": page
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        })
+        let json = await res.json();
+        setData(json["hits"])
+        setPageCount(json["nbPages"])
+        window.scrollTo(0, 0);
     }
 }
