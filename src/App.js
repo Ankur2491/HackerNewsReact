@@ -78,6 +78,12 @@ function App(props) {
                       <Typography variant="caption">
                         {i['time']} | {i['score']} points by {i['by']}
                       </Typography>
+                         <br/>
+                      {
+                        i['text'] && 
+                      <div style={{fontFamily:"'Monaco'", fontSize:'12px'}} dangerouslySetInnerHTML={{__html:i['text']}}>
+                      </div>
+                      } 
                     </CardContent>
                     <CardActions>
                       <a href={i['url']} target='_blank' rel="noreferrer">Learn More</a>
