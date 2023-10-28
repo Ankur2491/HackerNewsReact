@@ -166,6 +166,12 @@ export default function Search() {
                       <Typography variant="caption">
                         {d['created_at']} | {d['points']} points by {d['author']}
                       </Typography>
+                          <br/>
+                    {
+                        d['story_text'] && 
+                      <div style={{fontFamily:"'Monaco'", fontSize:'12px'}} dangerouslySetInnerHTML={{__html:i['story_text']}}>
+                      </div>
+                      } 
                     </CardContent>
                     <CardActions>
                       <a style={{color:'black'}}href={d['url']} target='_blank' rel="noreferrer">Learn More</a>
