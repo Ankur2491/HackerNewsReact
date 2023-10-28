@@ -169,7 +169,7 @@ export default function Search() {
                           <br/>
                     {
                         d['story_text'] && 
-                      <div style={{fontFamily:"'Monaco'", fontSize:'12px'}} dangerouslySetInnerHTML={{__html:i['story_text']}}>
+                      <div style={{fontFamily:"'Monaco'", fontSize:'12px'}} dangerouslySetInnerHTML={{__html:d['story_text']}}>
                       </div>
                       } 
                     </CardContent>
