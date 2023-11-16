@@ -177,7 +177,7 @@ export default function Search() {
                       <a style={{color:'black'}}href={d['url']} target='_blank' rel="noreferrer">Learn More</a>
                       <ThemeProvider theme={theme}>
                         {d['children'] && d['children'].length === 1 ? <Button onClick={()=>handleOpen(d)}> {d['children'].length} Comment</Button> : d['children'] && d['children'].length > 1 ?
-                          <Button onClick={()=>handleOpen(d)}> {d['children'].length} Comments</Button> : null
+                          <Button onClick={()=>handleOpen(d)}> {d['num_comments']} Comments</Button> : null
                         }
                       </ThemeProvider>
                     </CardActions>
